@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static array getRouteList()
  * @method static array getRouteNameList()
+ * @method static bool checkIfAvailable(string $key)
+ * @method static string getAdminViewByKey(string $key)
+ *
+ * @method static bool checkIfMenuIsActive()
+ * @method static bool checkIfMenuItemIsActive(string $key)
  *
  * @see FormActionsManager
  */
