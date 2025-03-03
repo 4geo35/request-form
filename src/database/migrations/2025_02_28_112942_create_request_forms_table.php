@@ -16,6 +16,8 @@ return new class extends Migration
 
             $table->ipAddress()->nullable();
             $table->string("type");
+            $table->string("uri")->nullable();
+            $table->string("place")->nullable();
             $table->unsignedBigInteger("user_id")->nullable();
             $table->unsignedBigInteger("recordable_id");
             $table->string("recordable_type");

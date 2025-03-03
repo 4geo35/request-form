@@ -4,6 +4,7 @@ namespace GIS\RequestForm\Livewire\Web\Forms;
 
 use GIS\RequestForm\Interfaces\RequestFormShowInterface;
 use GIS\RequestForm\Traits\RequestFormShowTrait;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -33,7 +34,7 @@ class WebCallFormWire extends Component implements RequestFormShowInterface
     {
         return [
             "name" => ["required", "string", "max:50"],
-            "phone" => ["required", "string", "max:50"],
+            "phone" => ["required", "string", "max:18", "min:18"],
             "privacy" => ["required"],
         ];
     }

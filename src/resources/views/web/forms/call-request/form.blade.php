@@ -1,5 +1,4 @@
 <form wire:submit.prevet="store" class="space-y-indent-half">
-    {{ $prefix }}
     <x-tt::notifications.error :prefix="$prefix" />
     <x-tt::notifications.success :prefix="$prefix" />
 
