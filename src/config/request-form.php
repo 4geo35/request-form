@@ -3,12 +3,12 @@
 return [
     // Settings
     "availableForms" => [
-        "call-form" => "Обратный звонок",
+        "call-request" => "Обратный звонок",
     ],
     "customAvailableForms" => [],
 
     "formItems" => [
-        "call-form" => "rf::admin.forms.call-form",
+        "call-request" => "rf::admin.forms.call-request",
     ],
 
     // Admin
