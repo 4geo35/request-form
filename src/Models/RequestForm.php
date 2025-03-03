@@ -12,6 +12,8 @@ class RequestForm extends Model implements RequestFormModelInterface
 {
     protected $fillable = [
         "type",
+        "place",
+        "uri",
     ];
 
     public function user(): BelongsTo
