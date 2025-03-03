@@ -37,8 +37,8 @@ class FormActionsManager
 
     public function getAdminViewByKey(string $key): string
     {
-        if (! isset(config("request-form.formItems")[$key]["admin"])) return ""; // TODO: add error view
-        return config("request-form.formItems")[$key]["admin"];
+        if (! isset(config("request-form.formItems")[$key])) return ""; // TODO: add error view
+        return config("request-form.formItems")[$key];
     }
 
     public function checkIfMenuIsActive(): bool

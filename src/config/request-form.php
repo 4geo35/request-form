@@ -8,10 +8,9 @@ return [
     "customAvailableForms" => [],
 
     "formItems" => [
-        "call-form" => [
-            "admin" => "rf::admin.forms.call-form",
-        ]
+        "call-form" => "rf::admin.forms.call-form",
     ],
+
     // Admin
     "customRequestFormModel" => null,
     "customCallRequestRecordModel" => null,
@@ -19,4 +18,7 @@ return [
     "customFormActionsManager" => null,
 
     "customFormAdminController" => null,
+
+    // Components
+    "customWebCallFormComponent" => null,
 ];

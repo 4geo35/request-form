@@ -3,7 +3,9 @@
 namespace GIS\RequestForm;
 
 use GIS\RequestForm\Helpers\FormActionsManager;
+use GIS\RequestForm\Livewire\Web\Forms\WebCallFormWire;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class RequestFormServiceProvider extends ServiceProvider
 {
@@ -41,6 +43,10 @@ class RequestFormServiceProvider extends ServiceProvider
 
     protected function addLivewireComponents(): void
     {
-
+        $component = config("request-form.customWebCallFormComponent");
+        Livewire::component(
+            "rf-web-call-form",
+            $component ?? WebCallFormWire::class
+        );
     }
 }
