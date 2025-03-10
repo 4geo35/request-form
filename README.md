@@ -10,3 +10,5 @@
 
     import IMask from "imask"
     window.IMask = IMask
+
+Запустить миграции `php artisan migrate`

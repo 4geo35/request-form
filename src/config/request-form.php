@@ -10,6 +10,7 @@ return [
     "formItems" => [
         "call-request" => "rf::admin.forms.call-request",
     ],
+    "customFormItems" => [],
 
     // Admin
     "customRequestFormModel" => null,
