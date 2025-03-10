@@ -6,6 +6,9 @@ use GIS\RequestForm\Helpers\FormActionsManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
+ * @method static array getFormList()
+ * @method static string getComponentByKey(string $key)
+ *
  * @method static array getRouteList()
  * @method static array getRouteNameList()
  * @method static bool checkIfAvailable(string $key)

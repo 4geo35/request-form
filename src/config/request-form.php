@@ -12,6 +12,11 @@ return [
     ],
     "customFormItems" => [],
 
+    "formComponents" => [
+        "call-request" => "rf-web-call-form",
+    ],
+    "customFormComponents" => [],
+
     // Admin
     "customRequestFormModel" => null,
     "customRequestFormModelObserver" => null,

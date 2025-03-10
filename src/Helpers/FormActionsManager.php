@@ -6,6 +6,29 @@ use Illuminate\Support\Facades\Route;
 
 class FormActionsManager
 {
+    public function getFormList(): array
+    {
+        $array = [];
+        if (! empty(config("request-form.availableForms"))) {
+            $this->makeFormListItem(config("request-form.availableForms"), $array);
+        }
+        if (! empty(config("request-form.customAvailableForms"))) {
+            $this->makeFormListItem(config("request-form.customAvailableForms"), $array);
+        }
+        return $array;
+    }
+
+    public function getComponentByKey(string $key): string
+    {
+        if (isset(config("request-form.formComponents")[$key])) {
+            return config("request-form.formComponents")[$key];
+        }
+        if (isset(config("request-form.customFormComponents")[$key])) {
+            return config("request-form.customFormComponents")[$key];
+        }
+        return ""; // TODO: add error component
+    }
+
     public function getRouteList(): array
     {
         $array = [];
@@ -64,6 +87,16 @@ class FormActionsManager
                 "key" => $key,
                 "title" => $title,
                 "routeName" => "admin.forms.show",
+            ];
+        }
+    }
+
+    protected function makeFormListItem(array $data, array &$result): void
+    {
+        foreach ($data as $key => $title) {
+            $result[] = (object) [
+                "key" => $key,
+                "title" => $title,
             ];
         }
     }
