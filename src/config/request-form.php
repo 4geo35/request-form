@@ -13,6 +13,7 @@ return [
 
     // Admin
     "customRequestFormModel" => null,
+    "customRequestFormModelObserver" => null,
     "customCallRequestRecordModel" => null,
 
     "customFormActionsManager" => null,
@@ -21,4 +22,5 @@ return [
 
     // Components
     "customWebCallFormComponent" => null,
+    "customAdminCallTableComponent" => null,
 ];

@@ -14,4 +14,12 @@ class RequestFormObserver
             $form->user_id = Auth::id();
         }
     }
+
+    public function deleted(RequestFormModelInterface $form): void
+    {
+        $record = $form->recordable;
+        if ($record) {
+            $record->delete();
+        }
+    }
 }

@@ -3,6 +3,8 @@
 namespace GIS\RequestForm\Interfaces;
 
 use ArrayAccess;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use JsonSerializable;
 use Stringable;
 use Illuminate\Contracts\Broadcasting\HasBroadcastChannel;
@@ -15,5 +17,6 @@ use Illuminate\Contracts\Support\Jsonable;
 interface RequestFormModelInterface extends Arrayable, ArrayAccess, CanBeEscapedWhenCastToString,
     HasBroadcastChannel, Jsonable, JsonSerializable, QueueableEntity, Stringable, UrlRoutable
 {
-
+    public function user(): BelongsTo;
+    public function recordable(): MorphTo;
 }
