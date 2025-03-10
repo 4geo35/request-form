@@ -21,6 +21,9 @@ class CallTableWire extends Component
     public string $searchPlace = "";
     public string $searchIp = "";
 
+    public string $orderBy = "created";
+    public string $orderByDirection = "desc";
+
     public bool $displayDelete = false;
     public int|null $formId = null;
 
@@ -34,6 +37,8 @@ class CallTableWire extends Component
             "searchUri" => ["as" => "uri", "except" => ""],
             "searchPlace" => ["as" => "place", "except" => ""],
             "searchIp" => ["as" => "ip", "except" => ""],
+            "orderBy" => ["as" => "order-by", "except" => ""],
+            "orderByDirection" => ["as" => "direction", "except" => ""],
         ];
     }
 
@@ -54,15 +59,33 @@ class CallTableWire extends Component
         BuilderActions::extendLike($query, $this->searchPlace, "request_forms.place");
         BuilderActions::extendLike($query, $this->searchIp, "request_forms.ip_address");
 
-        $query->orderBy("request_forms.created_at", "DESC");
+        if ($this->orderBy === "created") {
+            $orderBy = "request_forms.created_at";
+        } else {
+            $orderBy = "call_request_records.{$this->orderBy}";
+        }
+        $query->orderBy($orderBy, $this->orderByDirection);
         $forms = $query->paginate();
         return view('rf::livewire.admin.forms.call-table-wire', compact("forms"));
     }
 
     public function clearSearch(): void
     {
-        $this->reset("searchName", "searchPhone", "searchFrom", "searchTo", "searchUri", "searchPlace", "searchIp");
+        $this->reset(
+            "searchName", "searchPhone", "searchFrom", "searchTo",
+            "searchUri", "searchPlace", "searchIp", "orderBy", "orderByDirection"
+        );
         $this->resetPage();
+    }
+
+    public function changeOrder(string $orderBy): void
+    {
+        if ($this->orderBy === $orderBy) {
+            $this->orderByDirection = $this->orderByDirection == "desc" ? "asc" : "desc";
+        } else {
+            $this->orderBy = $orderBy;
+            $this->orderByDirection = "desc";
+        }
     }
 
     public function showDelete(int $formId): void

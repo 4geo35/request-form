@@ -1,9 +1,21 @@
 <x-tt::table>
     <x-slot name="head">
         <tr>
-            <x-tt::table.heading class="text-left text-nowrap">Имя</x-tt::table.heading>
-            <x-tt::table.heading class="text-left text-nowrap">Телефон</x-tt::table.heading>
-            <x-tt::table.heading class="text-left text-nowrap">Отправление</x-tt::table.heading>
+            <x-tt::table.heading class="text-left text-nowrap"
+                                 sortable direction="{{ $orderBy == 'name' ? $orderByDirection : '' }}"
+                                 wire:click="changeOrder('name')">
+                Имя
+            </x-tt::table.heading>
+            <x-tt::table.heading class="text-left text-nowrap"
+                                 sortable direction="{{ $orderBy == 'phone' ? $orderByDirection : '' }}"
+                                 wire:click="changeOrder('phone')">
+                Телефон
+            </x-tt::table.heading>
+            <x-tt::table.heading class="text-left text-nowrap"
+                                 sortable direction="{{ $orderBy == 'created' ? $orderByDirection : '' }}"
+                                 wire:click="changeOrder('created')">
+                Отправление
+            </x-tt::table.heading>
             <x-tt::table.heading class="text-left text-nowrap">Действия</x-tt::table.heading>
         </tr>
     </x-slot>
