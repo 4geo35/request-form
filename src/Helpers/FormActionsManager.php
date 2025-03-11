@@ -29,6 +29,17 @@ class FormActionsManager
         return "Неизвестно";
     }
 
+    public function getRowsTemplateByKey(string $key): string
+    {
+        if (! empty(config("request-form.notificationRows")[$key])) {
+            return config("request-form.notificationRows")[$key];
+        }
+        if (! empty(config("request-form.customNotificationRows")[$key])) {
+            return config("request-form.customNotificationRows")[$key];
+        }
+        return "";
+    }
+
     public function getComponentByKey(string $key): string
     {
         if (isset(config("request-form.formComponents")[$key])) {

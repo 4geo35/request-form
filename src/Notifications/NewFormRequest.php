@@ -32,9 +32,15 @@ class NewFormRequest extends Notification implements ShouldQueue
 
     public function toMail(object $notifiable): MailMessage
     {
+        $notifiable->load("recordable");
+
         return (new MailMessage)
             ->subject('Зарегистрировано новое обращение на сайте')
-            ->line(implode(" ", ["Новое обращение", FormActions::getTitleByKey($notifiable->type)]))
-            ->action("Просмотр", route("admin.forms.show", $notifiable->type) . "?id={$notifiable->id}");
+            ->markdown("rf::mail.request-form.new-request", [
+                "form" => $notifiable,
+                "title" => FormActions::getTitleByKey($notifiable->type),
+                "url" => route("admin.forms.show", $notifiable->type) . "?id={$notifiable->id}",
+                "template" => FormActions::getRowsTemplateByKey($notifiable->type),
+            ]);
     }
 }
