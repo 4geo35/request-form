@@ -17,9 +17,13 @@ return [
     ],
     "customFormComponents" => [],
 
+    "formNotificationEmails" => env("REQUEST_FORM_NOTIFICATION_EMAILS"),
+
     // Admin
     "customRequestFormModel" => null,
     "customRequestFormModelObserver" => null,
+    "customRequestFormModelNotification" => null,
+
     "customCallRequestRecordModel" => null,
 
     "customFormActionsManager" => null,

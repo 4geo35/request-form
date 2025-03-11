@@ -1,6 +1,7 @@
 <x-tt::table>
     <x-slot name="head">
         <tr>
+            <x-tt::table.heading class="text-left text-nowrap">ID</x-tt::table.heading>
             <x-tt::table.heading class="text-left text-nowrap"
                                  sortable direction="{{ $orderBy == 'name' ? $orderByDirection : '' }}"
                                  wire:click="changeOrder('name')">
@@ -22,6 +23,7 @@
     <x-slot name="body">
         @foreach($forms as $item)
             <tr>
+                <td class="text-nowrap">{{ $item->id }}</td>
                 <td class="text-nowrap">{{ $item->recordable->name }}</td>
                 <td class="text-nowrap">{{ $item->recordable->phone }}</td>
                 <td>

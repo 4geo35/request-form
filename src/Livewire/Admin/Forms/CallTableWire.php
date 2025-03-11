@@ -21,6 +21,7 @@ class CallTableWire extends Component
     public string $searchUri = "";
     public string $searchPlace = "";
     public string $searchIp = "";
+    public string $searchId = "";
 
     protected function queryString(): array
     {
@@ -32,6 +33,7 @@ class CallTableWire extends Component
             "searchUri" => ["as" => "uri", "except" => ""],
             "searchPlace" => ["as" => "place", "except" => ""],
             "searchIp" => ["as" => "ip", "except" => ""],
+            "searchId" => ["as" => "id", "except" => ""],
             "orderBy" => ["as" => "order-by", "except" => ""],
             "orderByDirection" => ["as" => "direction", "except" => ""],
         ];
@@ -53,6 +55,7 @@ class CallTableWire extends Component
         BuilderActions::extendLike($query, $this->searchUri, "request_forms.uri");
         BuilderActions::extendLike($query, $this->searchPlace, "request_forms.place");
         BuilderActions::extendLike($query, $this->searchIp, "request_forms.ip_address");
+        BuilderActions::extendLike($query, $this->searchId, "request_forms.id");
 
         if ($this->orderBy === "created") {
             $orderBy = "request_forms.created_at";
@@ -68,7 +71,7 @@ class CallTableWire extends Component
     {
         $this->reset(
             "searchName", "searchPhone", "searchFrom", "searchTo",
-            "searchUri", "searchPlace", "searchIp", "orderBy", "orderByDirection"
+            "searchUri", "searchPlace", "searchIp", "orderBy", "orderByDirection", "searchId"
         );
         $this->resetPage();
     }

@@ -2,4 +2,5 @@
     <input type="text" aria-label="Страница" placeholder="Страница" class="form-control" wire:model.live="searchUri">
     <input type="text" aria-label="Кнопка" placeholder="Кнопка" class="form-control" wire:model.live="searchPlace">
     <input type="text" aria-label="IP" placeholder="IP" class="form-control" wire:model.live="searchIp">
+    <input type="text" aria-label="ID" placeholder="ID" class="form-control" wire:model.live="searchId">
 </div>

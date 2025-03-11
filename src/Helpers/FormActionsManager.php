@@ -18,6 +18,17 @@ class FormActionsManager
         return $array;
     }
 
+    public function getTitleByKey(string $key): string
+    {
+        if (! empty(config("request-form.availableForms")[$key])) {
+            return config("request-form.availableForms")[$key];
+        }
+        if (! empty(config("request-form.customAvailableForms")[$key])) {
+            return config("request-form.customAvailableForms")[$key];
+        }
+        return "Неизвестно";
+    }
+
     public function getComponentByKey(string $key): string
     {
         if (isset(config("request-form.formComponents")[$key])) {

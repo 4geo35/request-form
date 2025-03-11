@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static array getFormList()
+ * @method static string getTitleByKey(string $key)
  * @method static string getComponentByKey(string $key)
  *
  * @method static array getRouteList()
