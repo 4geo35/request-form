@@ -5,7 +5,6 @@ namespace GIS\RequestForm\Livewire\Web\Forms;
 use GIS\RequestForm\Interfaces\RequestFormShowInterface;
 use GIS\RequestForm\Models\CallRequestRecord;
 use GIS\RequestForm\Traits\RequestFormActionsTrait;
-use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -30,7 +29,7 @@ class WebCallFormWire extends Component implements RequestFormShowInterface
         $this->prefix = implode("-", $array);
         $this->prefix .= "-";
 
-        $this->uri = Route::current()->uri();
+        $this->uri = url()->current();
     }
 
     public function rules(): array
