@@ -18,6 +18,6 @@
             </x-slot>
         </x-tt::modal.dialog>
     @else
-        @include("rf::web.forms.call-request.form")
+        @include("rf::web.forms.call-request.inline-form")
     @endif
 </div>
