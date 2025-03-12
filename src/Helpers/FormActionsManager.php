@@ -29,7 +29,7 @@ class FormActionsManager
     {
         $info = $this->getInfoByKey($key);
         if (empty($info)) { return ""; }
-        return $info["notificationRows"];
+        return $info["notificationRow"];
     }
 
     public function getComponentByKey(string $key): string
