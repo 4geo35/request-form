@@ -20,35 +20,23 @@ class FormActionsManager
 
     public function getTitleByKey(string $key): string
     {
-        if (! empty(config("request-form.availableForms")[$key])) {
-            return config("request-form.availableForms")[$key];
-        }
-        if (! empty(config("request-form.customAvailableForms")[$key])) {
-            return config("request-form.customAvailableForms")[$key];
-        }
-        return "Неизвестно";
+        $info = $this->getInfoByKey($key);
+        if (empty($info)) { return "Неизвестно"; }
+        return $info["title"];
     }
 
     public function getRowsTemplateByKey(string $key): string
     {
-        if (! empty(config("request-form.notificationRows")[$key])) {
-            return config("request-form.notificationRows")[$key];
-        }
-        if (! empty(config("request-form.customNotificationRows")[$key])) {
-            return config("request-form.customNotificationRows")[$key];
-        }
-        return "";
+        $info = $this->getInfoByKey($key);
+        if (empty($info)) { return ""; }
+        return $info["notificationRows"];
     }
 
     public function getComponentByKey(string $key): string
     {
-        if (isset(config("request-form.formComponents")[$key])) {
-            return config("request-form.formComponents")[$key];
-        }
-        if (isset(config("request-form.customFormComponents")[$key])) {
-            return config("request-form.customFormComponents")[$key];
-        }
-        return ""; // TODO: add error component
+        $info = $this->getInfoByKey($key);
+        if (empty($info)) { return ""; } // TODO: add error component
+        return $info["component"];
     }
 
     public function getRouteList(): array
@@ -82,9 +70,9 @@ class FormActionsManager
 
     public function getAdminViewByKey(string $key): string
     {
-        if (isset(config("request-form.formItems")[$key])) return config("request-form.formItems")[$key];
-        if (isset(config("request-form.customFormItems")[$key])) return config("request-form.customFormItems")[$key];
-        return ""; // TODO: add error view
+        $info = $this->getInfoByKey($key);
+        if (empty($info)) { return ""; } // TODO: add error view
+        return $info["admin"];
     }
 
     public function checkIfMenuIsActive(): bool
@@ -102,12 +90,23 @@ class FormActionsManager
         return $currentKey === $key;
     }
 
+    protected function getInfoByKey(string $key): ?array
+    {
+        if (! empty(config("request-form.availableForms")[$key])) {
+            return config("request-form.availableForms")[$key];
+        }
+        if (! empty(config("request-form.customAvailableForms")[$key])) {
+            return config("request-form.customAvailableForms")[$key];
+        }
+        return null;
+    }
+
     protected function makeFormRouteItem(array $data, array &$result): void
     {
-        foreach ($data as $key => $title) {
+        foreach ($data as $key => $info) {
             $result[] = (object) [
                 "key" => $key,
-                "title" => $title,
+                "title" => $info["title"],
                 "routeName" => "admin.forms.show",
             ];
         }
@@ -115,10 +114,10 @@ class FormActionsManager
 
     protected function makeFormListItem(array $data, array &$result): void
     {
-        foreach ($data as $key => $title) {
+        foreach ($data as $key => $info) {
             $result[] = (object) [
                 "key" => $key,
-                "title" => $title,
+                "title" => $info["title"],
             ];
         }
     }

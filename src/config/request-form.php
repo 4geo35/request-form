@@ -4,24 +4,18 @@ return [
     // Settings
     // Доступные типы формы
     "availableForms" => [
-        "call-request" => "Обратный звонок",
+        "call-request" => [
+            "title" => "Обратный звонок",
+            // Шаблон для вывода полей формы
+            "notificationRow" => "rf::mail.rows.call-request",
+            // Livewire компонент для вывода формы
+            "component" => "rf-web-call-form",
+            // Страница в админке
+            "admin" => "rf::admin.forms.call-request",
+        ]
     ],
     "customAvailableForms" => [],
-    // Страница в админке
-    "formItems" => [
-        "call-request" => "rf::admin.forms.call-request",
-    ],
-    "customFormItems" => [],
-    // Шаблон для вывода полей формы
-    "notificationRows" => [
-        "call-request" => "rf::mail.rows.call-request",
-    ],
-    "customNotificationRows" => [],
-    // Livewire компонент для вывода формы
-    "formComponents" => [
-        "call-request" => "rf-web-call-form",
-    ],
-    "customFormComponents" => [],
+
     // Список email на отправку
     "formNotificationEmails" => env("REQUEST_FORM_NOTIFICATION_EMAILS"),
 
