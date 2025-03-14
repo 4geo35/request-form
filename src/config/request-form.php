@@ -15,6 +15,7 @@ return [
         ]
     ],
     "customAvailableForms" => [],
+    "externalExceptions" => [],
 
     // Список email на отправку
     "formNotificationEmails" => env("REQUEST_FORM_NOTIFICATION_EMAILS"),

@@ -9,11 +9,12 @@ class FormActionsManager
     public function getFormList(): array
     {
         $array = [];
+        $exceptions = ! empty(config("request-form.externalExceptions")) ? config("request-form.externalExceptions") : [];
         if (! empty(config("request-form.availableForms"))) {
-            $this->makeFormListItem(config("request-form.availableForms"), $array);
+            $this->makeFormListItem(config("request-form.availableForms"), $array, $exceptions);
         }
         if (! empty(config("request-form.customAvailableForms"))) {
-            $this->makeFormListItem(config("request-form.customAvailableForms"), $array);
+            $this->makeFormListItem(config("request-form.customAvailableForms"), $array, $exceptions);
         }
         return $array;
     }
@@ -112,9 +113,10 @@ class FormActionsManager
         }
     }
 
-    protected function makeFormListItem(array $data, array &$result): void
+    protected function makeFormListItem(array $data, array &$result, array $exceptions = []): void
     {
         foreach ($data as $key => $info) {
+            if (in_array($key, $exceptions)) { continue; }
             $result[] = (object) [
                 "key" => $key,
                 "title" => $info["title"],
