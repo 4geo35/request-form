@@ -39,7 +39,7 @@
                    id="privacy-{{ $formName }}{{ $modal ? '-modal' : '' }}{{ ! empty($postfix) ? '-' . $postfix : '' }}"
                    class="form-check-input shrink-0 {{ $errors->has('privacy') ? 'border-danger' : '' }}" />
             <label for="privacy-{{ $formName }}{{ $modal ? '-modal' : '' }}{{ ! empty($postfix) ? '-' . $postfix : '' }}" class="form-check-label">
-                Даю согласие на обработку <a href="{{ $privacyUrl }}" target="_blank" class="underline hover:text-body/60">Персональных данных</a>
+                @include("tt::policy.check-text")
             </label>
         </div>
     </div>

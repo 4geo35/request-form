@@ -27,13 +27,12 @@
     </div>
 
     <div class="form-check">
-        @php($privacyUrl = \Illuminate\Support\Facades\Route::has("web.privacy-policy") ?  route('web.privacy-policy') : "#")
         <input type="checkbox" wire:model="privacy"
                required
                id="privacy-{{ $formName }}{{ $modal ? '-modal' : '' }}{{ ! empty($postfix) ? '-' . $postfix : '' }}"
                class="form-check-input {{ $errors->has('privacy') ? 'border-danger' : '' }}" />
         <label for="privacy-{{ $formName }}{{ $modal ? '-modal' : '' }}{{ ! empty($postfix) ? '-' . $postfix : '' }}" class="form-check-label">
-            Даю согласие на обработку <a href="{{ $privacyUrl }}" target="_blank" class="underline hover:text-body/60">Персональных данных</a>
+            @include("tt::policy.check-text")
         </label>
     </div>
 
