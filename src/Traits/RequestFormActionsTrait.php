@@ -5,7 +5,6 @@ namespace GIS\RequestForm\Traits;
 use GIS\RequestForm\Facades\FormActions;
 use GIS\RequestForm\Interfaces\RequestFormModelInterface;
 use GIS\RequestForm\Interfaces\ShouldRequestFormInterface;
-use GIS\RequestForm\Models\RequestForm;
 use Livewire\Attributes\On;
 
 trait RequestFormActionsTrait
@@ -15,8 +14,10 @@ trait RequestFormActionsTrait
     public string $place = "";
 
     #[On("show-request-form")]
-    public function showForm(string $key, string $place = null): void
+    public function showForm(string $key, string $place = null, string $double = null): void
     {
+        if (! $this->modal) { return; }
+        if (! empty($double) && $double !== $this->double) { return; }
         if (! FormActions::checkIfAvailable($key) || $key !== $this->formName) { return; }
         if ($place) { $this->place = $place; }
         else { $this->reset("place"); }

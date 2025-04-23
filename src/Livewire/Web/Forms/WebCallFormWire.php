@@ -14,6 +14,7 @@ class WebCallFormWire extends Component implements RequestFormShowInterface
     public string $formName = "call-request";
     public bool $modal = false;
     public string $postfix = "";
+    public string $double = "";
 
     public string $name = "";
     public string $phone = "";
@@ -25,8 +26,7 @@ class WebCallFormWire extends Component implements RequestFormShowInterface
     {
         $array = [$this->formName];
         if ($this->modal) $array[] = "modal";
-        if ($this->postfix) $array[] = $this->postfix;
-        $this->prefix = implode("-", $array);
+        $this->prefix .= implode("-", $array);
         $this->prefix .= "-";
 
         $this->uri = url()->current();
