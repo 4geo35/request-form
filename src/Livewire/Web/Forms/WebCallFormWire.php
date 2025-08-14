@@ -22,16 +22,6 @@ class WebCallFormWire extends Component implements RequestFormShowInterface
 
     public string $prefix = "";
 
-    public function mount(): void
-    {
-        $array = [$this->formName];
-        if ($this->modal) $array[] = "modal";
-        $this->prefix .= implode("-", $array);
-        $this->prefix .= "-";
-
-        $this->uri = url()->current();
-    }
-
     public function rules(): array
     {
         return [

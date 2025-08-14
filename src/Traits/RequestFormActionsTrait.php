@@ -13,6 +13,16 @@ trait RequestFormActionsTrait
     public string $uri = "";
     public string $place = "";
 
+    public function mount(): void
+    {
+        $array = [$this->formName];
+        if ($this->modal) $array[] = "modal";
+        $this->prefix .= implode("-", $array);
+        $this->prefix .= "-";
+
+        $this->uri = url()->current();
+    }
+
     #[On("show-request-form")]
     public function showForm(string $key, string $place = null, string $double = null): void
     {
