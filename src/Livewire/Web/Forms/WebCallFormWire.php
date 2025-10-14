@@ -18,7 +18,7 @@ class WebCallFormWire extends Component implements RequestFormShowInterface
 
     public string $name = "";
     public string $phone = "";
-    public bool $privacy = true;
+    public bool $privacy = false;
 
     public string $prefix = "";
 
