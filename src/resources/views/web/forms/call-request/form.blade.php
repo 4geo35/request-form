@@ -2,6 +2,8 @@
     <x-tt::notifications.error :prefix="$prefix" />
     <x-tt::notifications.success :prefix="$prefix" />
 
+    <x-rf::hidden-wire-field />
+
     <div>
         <input type="text"
                id="name-{{ $formName }}{{ $modal ? '-modal' : '' }}{{ ! empty($postfix) ? '-' . $postfix : '' }}"

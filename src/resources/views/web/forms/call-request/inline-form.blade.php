@@ -3,6 +3,8 @@
     <x-tt::notifications.success :prefix="$prefix" />
 
     <div class="row">
+        <x-rf::hidden-wire-field />
+
         <div class="col w-full md:w-1/2 mb-indent-half">
             <input type="text"
                    id="name-{{ $formName }}{{ $modal ? '-modal' : '' }}{{ ! empty($postfix) ? '-' . $postfix : '' }}"

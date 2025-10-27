@@ -6,6 +6,26 @@ use Illuminate\Support\Facades\Route;
 
 class FormActionsManager
 {
+    public function prepareValidation(array $data): array
+    {
+        foreach ($data as &$value) {
+            foreach ($value as &$rule) {
+                if (! is_string($rule)) { continue; }
+                if (! str_starts_with($rule, "email")) { continue; }
+                $exploded = explode(":", $rule);
+                if (count($exploded) > 1) {
+                    $additional = explode(",", $exploded[1]);
+                    if (! in_array("dns", $additional)) { $additional[] = "dns"; }
+                } else { $additional = ["dns"]; }
+                $rule = implode(":", [$exploded[0], implode(",", $additional)]);
+            }
+        }
+        if (empty($data["hidden"])) {
+            $data["hidden"] = ["nullable", "prohibited"];
+        }
+        return $data;
+    }
+
     public function getFormList(): array
     {
         $array = [];

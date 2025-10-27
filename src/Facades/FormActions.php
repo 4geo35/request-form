@@ -6,6 +6,8 @@ use GIS\RequestForm\Helpers\FormActionsManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
+ * @method static array prepareValidation(array $data)
+ *
  * @method static array getFormList()
  * @method static string getTitleByKey(string $key)
  * @method static string getRowsTemplateByKey(string $key)
