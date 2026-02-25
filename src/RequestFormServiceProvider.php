@@ -12,33 +12,20 @@ use Livewire\Livewire;
 
 class RequestFormServiceProvider extends ServiceProvider
 {
-    public function boot(): void
-    {
-        // Views
-        $this->loadViewsFrom(__DIR__ . "/resources/views", "rf");
-
-        // Livewire
-        $this->addLivewireComponents();
-
-        // Observers
-        $formObserverClass = config("request-form.customRequestFormModelObserver") ?? RequestFormObserver::class;
-        $formModelClass = config("request-form.customRequestFormModel") ?? RequestForm::class;
-        $formModelClass::observe($formObserverClass);
-    }
-
     public function register(): void
     {
-        // Migrations
         $this->loadMigrationsFrom(__DIR__ . "/database/migrations");
-
-        // Config
         $this->mergeConfigFrom(__DIR__ . "/config/request-form.php", "request-form");
+        $this->initFacades();
+    }
 
-        // Routes
+    public function boot(): void
+    {
+        $this->loadViewsFrom(__DIR__ . "/resources/views", "rf");
         $this->loadRoutesFrom(__DIR__ . "/routes/admin.php");
 
-        // Facades
-        $this->initFacades();
+        $this->observeModels();
+        $this->addLivewireComponents();
     }
 
     protected function initFacades(): void
@@ -62,5 +49,12 @@ class RequestFormServiceProvider extends ServiceProvider
             "rf-admin-call-table",
             $component ?? CallTableWire::class
         );
+    }
+
+    protected function observeModels(): void
+    {
+        $formObserverClass = config("request-form.customRequestFormModelObserver") ?? RequestFormObserver::class;
+        $formModelClass = config("request-form.customRequestFormModel") ?? RequestForm::class;
+        $formModelClass::observe($formObserverClass);
     }
 }
