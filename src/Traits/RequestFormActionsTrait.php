@@ -28,6 +28,7 @@ trait RequestFormActionsTrait
     {
         if (! $this->modal) { return; }
         if (! empty($double) && $double !== $this->double) { return; }
+        if (empty($double) && ! empty($this->double)) { return; }
         if (! FormActions::checkIfAvailable($key) || $key !== $this->formName) { return; }
         if ($place) { $this->place = $place; }
         else { $this->reset("place"); }
